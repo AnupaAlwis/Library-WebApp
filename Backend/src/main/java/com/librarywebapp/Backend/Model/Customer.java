@@ -16,5 +16,11 @@ import lombok.NoArgsConstructor;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerId;
+    private Integer customerId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String address;
+    private String password;
+    private String phoneNumber;
 }
