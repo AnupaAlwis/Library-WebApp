@@ -1,6 +1,5 @@
 package com.librarywebapp.Backend.Model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,4 +16,11 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookId;
+
+    private String title;
+    private String author;
+    private String isbn;
+    private String genre;
+    private int publicationYear;
+    private int quantity;
 }
