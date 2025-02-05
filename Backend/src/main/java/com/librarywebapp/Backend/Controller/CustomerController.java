@@ -28,4 +28,14 @@ public class CustomerController {
         return customerService.getDetails(id);
     }
 
+    @PutMapping("update")
+    public ResponseEntity<CustomerGeneralDTO> updateCustomer(@RequestParam Integer id, @RequestBody CustomerAddDTO customerAddDTO) {
+        try {
+            CustomerGeneralDTO updatedCustomer = customerService.updateCustomer(id, customerAddDTO);
+            return ResponseEntity.ok(updatedCustomer);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

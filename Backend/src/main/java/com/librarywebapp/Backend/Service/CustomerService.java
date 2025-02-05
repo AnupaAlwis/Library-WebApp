@@ -55,4 +55,30 @@ public class CustomerService {
 
         }
     }
+
+
+    public CustomerGeneralDTO updateCustomer(Integer id, CustomerAddDTO customerAddDTO) {
+        Customer customer = customerRepository.findById(id).orElseThrow();
+        customer.setFirstName(customerAddDTO.getFirstName());
+        customer.setLastName(customerAddDTO.getLastName());
+        customer.setEmail(customerAddDTO.getEmail());
+        customer.setAddress(customerAddDTO.getAddress());
+        customer.setPassword(customerAddDTO.getPassword());
+        customer.setPhoneNumber(customerAddDTO.getPhoneNumber());
+        Customer updatedCustomer = customerRepository.save(customer);
+        return convertToDTO(updatedCustomer);
+
+    }
+
+    private CustomerGeneralDTO convertToDTO(Customer customer) {
+        CustomerGeneralDTO customerGeneralDTO = new CustomerGeneralDTO();
+        customerGeneralDTO.setCustomerId(customer.getCustomerId());
+        customerGeneralDTO.setFirstName(customer.getFirstName());
+        customerGeneralDTO.setLastName(customer.getLastName());
+        customerGeneralDTO.setEmail(customer.getEmail());
+        customerGeneralDTO.setAddress(customer.getAddress());
+        return customerGeneralDTO;
+
+
+    }
 }
