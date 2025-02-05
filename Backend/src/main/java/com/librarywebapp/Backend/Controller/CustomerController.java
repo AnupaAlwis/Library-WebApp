@@ -38,4 +38,9 @@ public class CustomerController {
         }
     }
 
+    @DeleteMapping("delete")
+    public ResponseEntity<String> deleteCustomer(@RequestParam Integer id) {
+        return customerService.deleteCustomer(id);
+    }
+
 }

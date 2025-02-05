@@ -81,4 +81,19 @@ public class CustomerService {
 
 
     }
+
+    public ResponseEntity<String> deleteCustomer(Integer id) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()) {
+            customerRepository.deleteById(id);
+            return ResponseEntity.ok("Customer deleted successfully");
+        }
+        else{
+            ResponseEntity responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return responseEntity;
+        }
+
+    }
+
+
 }
