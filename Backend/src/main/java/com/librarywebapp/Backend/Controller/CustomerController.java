@@ -24,8 +24,14 @@ public class CustomerController {
     }
 
     @GetMapping("details")
-    public ResponseEntity<CustomerGeneralDTO> getAllCustomers(@RequestParam Integer id) {
+    public ResponseEntity<CustomerGeneralDTO> getCustomerById(@RequestParam Integer id) {
         return customerService.getDetails(id);
+    }
+
+    @GetMapping("all")
+    public List<CustomerGeneralDTO> getAllCustomers() {
+        return customerService.getAllCustomers();
+
     }
 
     @PutMapping("update")

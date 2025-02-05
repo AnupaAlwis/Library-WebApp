@@ -96,4 +96,10 @@ public class CustomerService {
     }
 
 
+    public List<CustomerGeneralDTO> getAllCustomers() {
+        return customerRepository.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
