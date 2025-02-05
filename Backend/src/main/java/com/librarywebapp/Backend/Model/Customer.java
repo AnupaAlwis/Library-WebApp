@@ -23,4 +23,5 @@ public class Customer {
     private String address;
     private String password;
     private String phoneNumber;
+    private Float fine;
 }
