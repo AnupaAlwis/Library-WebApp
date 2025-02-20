@@ -13,4 +13,5 @@ public class CustomerAddDTO {
     private String address;
     private String password;
     private String phoneNumber;
+    private Float fine;
 }

@@ -27,6 +27,7 @@ public class CustomerService {
         customer.setAddress(customerAddDTO.getAddress());
         customer.setPassword(customerAddDTO.getPassword());
         customer.setPhoneNumber(customerAddDTO.getPhoneNumber());
+        customer.setFine(customerAddDTO.getFine());
         customerRepository.save(customer);
         ResponseEntity<Customer> response = new ResponseEntity<>(customer, HttpStatus.CREATED);
         return response;
@@ -45,6 +46,7 @@ public class CustomerService {
             customerGeneralDTO.setLastName((customer.getLastName()));
             customerGeneralDTO.setEmail(customer.getEmail());
             customerGeneralDTO.setAddress(customer.getAddress());
+            customerGeneralDTO.setFine(customer.getFine());
             return ResponseEntity.ok(customerGeneralDTO);
 
 
@@ -56,7 +58,6 @@ public class CustomerService {
         }
     }
 
-
     public CustomerGeneralDTO updateCustomer(Integer id, CustomerAddDTO customerAddDTO) {
         Customer customer = customerRepository.findById(id).orElseThrow();
         customer.setFirstName(customerAddDTO.getFirstName());
@@ -65,6 +66,7 @@ public class CustomerService {
         customer.setAddress(customerAddDTO.getAddress());
         customer.setPassword(customerAddDTO.getPassword());
         customer.setPhoneNumber(customerAddDTO.getPhoneNumber());
+        customer.setFine(customerAddDTO.getFine());
         Customer updatedCustomer = customerRepository.save(customer);
         return convertToDTO(updatedCustomer);
 
@@ -77,6 +79,7 @@ public class CustomerService {
         customerGeneralDTO.setLastName(customer.getLastName());
         customerGeneralDTO.setEmail(customer.getEmail());
         customerGeneralDTO.setAddress(customer.getAddress());
+        customerGeneralDTO.setFine(customer.getFine());
         return customerGeneralDTO;
 
 
