@@ -62,6 +62,18 @@ public class BookController {
         }
     }
 
+    @PutMapping("lend")
+    public String lendBook(@RequestParam Integer id, @RequestParam Integer quantity) {
+        try {
+            String lendedBook = bookService.lendBook(id, quantity);
+            return lendedBook;
+        } catch (Exception e) {
+            return "Error Try Again";
+        }
+    }
+
+
+
 
 
 }

@@ -106,10 +106,22 @@ public class BookService {
 
     public String returnBook(Integer id, Integer quantity) {
         Book book = booksRepository.findById(id).orElseThrow();
-        book.setQuantity(quantity);
+        Integer newQuantity = book.getQuantity() + quantity;
+        book.setQuantity(newQuantity);
         booksRepository.save(book);
         return "Book returned successfully";
 
+    }
+
+    public String lendBook(Integer id, Integer quantity) {
+        Book book = booksRepository.findById(id).orElseThrow();
+        Integer newQuantity = book.getQuantity() - quantity;
+        if (newQuantity < 0) {
+            return "Book quantity is not enough only " + book.getQuantity() + " can be lended";
+        }
+        book.setQuantity(newQuantity);
+        booksRepository.save(book);
+        return "Book Lended successfully";
     }
 }
 
