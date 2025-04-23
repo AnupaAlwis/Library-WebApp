@@ -16,6 +16,12 @@ import lombok.NoArgsConstructor;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int adminId;
+    private Integer adminId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String address;
+    private String password;
+    private String phoneNumber;
 
 }

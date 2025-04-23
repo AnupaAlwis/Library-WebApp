@@ -11,6 +11,4 @@ public class CustomerGeneralDTO {
     private String email;
     private String address;
     private Float fine;
-
-
 }
