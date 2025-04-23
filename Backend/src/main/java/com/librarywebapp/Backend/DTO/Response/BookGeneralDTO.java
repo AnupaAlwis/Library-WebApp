@@ -10,5 +10,5 @@ public class BookGeneralDTO {
     private String bookName;
     private String ISBN;
     private String author;
-    private String price;
+    private Integer price;
 }
