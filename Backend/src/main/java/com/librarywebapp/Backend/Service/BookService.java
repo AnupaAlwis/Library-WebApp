@@ -88,8 +88,7 @@ public class BookService {
         if (optionalBook.isPresent()) {
             booksRepository.deleteById(id);
             return ResponseEntity.ok("Book deleted successfully");
-        }
-        else{
+        } else {
             ResponseEntity responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
             return responseEntity;
         }
@@ -122,6 +121,26 @@ public class BookService {
         book.setQuantity(newQuantity);
         booksRepository.save(book);
         return "Book Lended successfully";
+    }
+
+    public ResponseEntity<BookGeneralDTO> getBookByName(String name) {
+        BookGeneralDTO bookGeneralDTO = new BookGeneralDTO();
+        Optional<Book> optionalBook = booksRepository.findBooksByBookName(name);
+
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            bookGeneralDTO.setBookId(book.getBookId());
+            bookGeneralDTO.setBookName(book.getBookName());
+            bookGeneralDTO.setISBN((book.getISBN()));
+            bookGeneralDTO.setAuthor(book.getAuthor());
+            bookGeneralDTO.setPrice(book.getPrice());
+            bookGeneralDTO.setQuantity(book.getQuantity());
+            return ResponseEntity.ok(bookGeneralDTO);
+        } else {
+            ResponseEntity responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return responseEntity;
+
+        }
     }
 }
 

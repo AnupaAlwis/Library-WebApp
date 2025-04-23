@@ -72,6 +72,11 @@ public class BookController {
         }
     }
 
+    @GetMapping("searchName")
+    public ResponseEntity<BookGeneralDTO> getBookByName(@RequestParam String name) {
+        return bookService.getBookByName(name);
+    }
+
 
 
 
