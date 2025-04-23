@@ -52,5 +52,17 @@ public class BookController {
         return bookService.deleteBook(id);
     }
 
+    @PutMapping("return")
+    public String returnBook(@RequestParam Integer id, @RequestParam Integer quantity) {
+        try {
+            String returnedBook = bookService.returnBook(id, quantity);
+            return returnedBook;
+        } catch (Exception e) {
+            return "Error Try Again";
+        }
+    }
+
+
+
 }
 

@@ -29,6 +29,7 @@ public class BookService {
         book.setISBN(bookAddDTO.getISBN());
         book.setAuthor(bookAddDTO.getAuthor());
         book.setPrice(bookAddDTO.getPrice());
+        book.setQuantity(bookAddDTO.getQuantity());
         booksRepository.save(book);
         ResponseEntity<Book> response = new ResponseEntity<>(book, HttpStatus.CREATED);
         return response;
@@ -47,6 +48,7 @@ public class BookService {
             bookGeneralDTO.setISBN((book.getISBN()));
             bookGeneralDTO.setAuthor(book.getAuthor());
             bookGeneralDTO.setPrice(book.getPrice());
+            bookGeneralDTO.setQuantity(book.getQuantity());
             return ResponseEntity.ok(bookGeneralDTO);
         } else {
             ResponseEntity responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -62,6 +64,7 @@ public class BookService {
         book.setBookName(bookAddDTO.getBookName());
         book.setISBN(bookAddDTO.getISBN());
         book.setPrice(bookAddDTO.getPrice());
+        book.setQuantity(bookAddDTO.getQuantity());
         Book updatedBook = booksRepository.save(book);
         return convertToDTO(updatedBook);
 
@@ -74,6 +77,7 @@ public class BookService {
         bookGeneralDTO.setISBN(book.getISBN());
         bookGeneralDTO.setAuthor(book.getAuthor());
         bookGeneralDTO.setPrice(book.getPrice());
+        bookGeneralDTO.setQuantity(book.getQuantity());
         return bookGeneralDTO;
 
 
@@ -98,6 +102,14 @@ public class BookService {
                 .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public String returnBook(Integer id, Integer quantity) {
+        Book book = booksRepository.findById(id).orElseThrow();
+        book.setQuantity(quantity);
+        booksRepository.save(book);
+        return "Book returned successfully";
+
     }
 }
 
