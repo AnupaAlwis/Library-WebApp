@@ -97,7 +97,7 @@ public class AdminService {
     }
 
 
-    public List<AdminGeneralDTO> getAllCustomers() {
+    public List<AdminGeneralDTO> getAllAdmins() {
         return adminRepository.findAll()
                 .stream()
                 .map(this::convertToDTO)
