@@ -10,5 +10,5 @@ public class CustomerGeneralDTO {
     private String lastName;
     private String email;
     private String address;
-    private Float fine;
+    private double fine;
 }

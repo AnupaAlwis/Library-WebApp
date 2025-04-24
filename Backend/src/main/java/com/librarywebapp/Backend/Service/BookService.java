@@ -7,13 +7,18 @@ import com.librarywebapp.Backend.DTO.Response.AdminGeneralDTO;
 import com.librarywebapp.Backend.DTO.Response.BookGeneralDTO;
 import com.librarywebapp.Backend.Model.Admin;
 import com.librarywebapp.Backend.Model.Book;
+import com.librarywebapp.Backend.Model.Customer;
 import com.librarywebapp.Backend.Repository.AdminRepository;
 import com.librarywebapp.Backend.Repository.BooksRepository;
+import com.librarywebapp.Backend.Repository.CustomerRepository;
 import lombok.AllArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,6 +27,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class BookService {
     private final BooksRepository booksRepository;
+    private final CustomerRepository customerRepository;
 
     public ResponseEntity<Book> addBook(BookAddDTO bookAddDTO) {
         Book book = new Book();
@@ -103,12 +109,29 @@ public class BookService {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public String returnBook(Integer id, Integer quantity) {
+    public String returnBook(Integer id, Integer quantity, Integer userId, LocalDate borrowDate) {
         Book book = booksRepository.findById(id).orElseThrow();
         Integer newQuantity = book.getQuantity() + quantity;
         book.setQuantity(newQuantity);
         booksRepository.save(book);
-        return "Book returned successfully";
+        Customer customer = customerRepository.findById(userId).orElseThrow();
+        // Define the allowed number of days to keep the book
+        int allowedDays = 7;
+
+        // Calculate the number of days between borrowDate and today
+        long daysBetween = ChronoUnit.DAYS.between(borrowDate, LocalDate.now());
+
+        // Calculate fine if overdue
+        double fine = 0.0;
+        if (daysBetween > allowedDays) {
+            fine = (daysBetween - allowedDays) * 100;
+        }
+
+        // Update customer fine
+        customer.setFine(fine);
+        customerRepository.save(customer);
+
+        return "Book returned successfully. Fine: " + fine;
 
     }
 

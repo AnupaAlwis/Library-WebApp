@@ -3,18 +3,20 @@ import React, { useState } from 'react';
 export default function GetReturns() {
     const [bookId, setBookId] = useState('');
     const [quantity, setQuantity] = useState('');
+    const [userId, setUserId] = useState('');
+    const [borrowDate, setBorrowDate] = useState('');
     const [message, setMessage] = useState('');
 
     const handleReturn = async (e) => {
         e.preventDefault();
 
-        if (!bookId || !quantity) {
-            setMessage('Please enter both Book ID and Quantity.');
+        if (!bookId || !quantity || !userId || !borrowDate) {
+            setMessage('Please enter all fields.');
             return;
         }
 
         try {
-            const response = await fetch(`http://localhost:8080/book/return?id=${bookId}&quantity=${quantity}`, {
+            const response = await fetch(`http://localhost:8080/book/return?id=${bookId}&quantity=${quantity}&userId=${userId}&borrowDate=${borrowDate}`, {
                 method: 'PUT',
             });
 
@@ -49,6 +51,23 @@ export default function GetReturns() {
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                         placeholder="Enter Quantity"
+                        className="w-full px-4 py-2 border rounded-lg mb-4"
+                    />
+
+                    <label className="block mb-2 text-gray-700 font-medium">User ID:</label>
+                    <input
+                        type="text"
+                        value={userId}
+                        onChange={(e) => setUserId(e.target.value)}
+                        placeholder="Enter User ID"
+                        className="w-full px-4 py-2 border rounded-lg mb-4"
+                    />
+
+                    <label className="block mb-2 text-gray-700 font-medium">Borrow Date:</label>
+                    <input
+                        type="date"
+                        value={borrowDate}
+                        onChange={(e) => setBorrowDate(e.target.value)}
                         className="w-full px-4 py-2 border rounded-lg mb-4"
                     />
 

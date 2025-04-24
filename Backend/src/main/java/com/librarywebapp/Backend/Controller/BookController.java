@@ -9,9 +9,11 @@ import com.librarywebapp.Backend.Model.Book;
 import com.librarywebapp.Backend.Model.Customer;
 import com.librarywebapp.Backend.Service.BookService;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -53,9 +55,9 @@ public class BookController {
     }
 
     @PutMapping("return")
-    public String returnBook(@RequestParam Integer id, @RequestParam Integer quantity) {
+    public String returnBook(@RequestParam Integer id, @RequestParam Integer quantity, @RequestParam Integer userId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate borrowDate) {
         try {
-            String returnedBook = bookService.returnBook(id, quantity);
+            String returnedBook = bookService.returnBook(id, quantity, userId, borrowDate);
             return returnedBook;
         } catch (Exception e) {
             return "Error Try Again";
