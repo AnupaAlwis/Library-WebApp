@@ -34,6 +34,48 @@ const AdminPage = () => {
       >
         Add Books
       </button>
+      <button
+        onClick={() => navigate('/admin/deleteCustomers')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Delete Users
+      </button>
+      <button
+        onClick={() => navigate('/admin/getReturns')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Return Books
+      </button>
+      <button
+        onClick={() => navigate('/admin/lendBooks')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Lend Books
+      </button>
+
+      <button
+        onClick={() => navigate('/admin/getAllBooks')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Get All Books
+      </button>
+
+      <button
+        onClick={() => navigate('/admin/deleteBook')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Delete Book
+      </button>
       {/* <button onClick={() => setShowForm(true)} style={{ margin: '10px' }}>
         Register User
       </button>
