@@ -18,6 +18,11 @@ public class CustomerController {
 
     private CustomerService customerService;
 
+    @GetMapping("authenticate")
+    public String authenticate(@RequestParam Integer id, @RequestParam String password) {
+        return customerService.authenticate(id,password);
+    }
+
     @PostMapping("register")
     public ResponseEntity<Customer> register(@RequestBody CustomerAddDTO customerAddDTO) {
         return customerService.registerUser(customerAddDTO);

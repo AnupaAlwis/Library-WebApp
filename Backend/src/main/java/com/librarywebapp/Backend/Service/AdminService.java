@@ -103,4 +103,15 @@ public class AdminService {
                 .map(this::convertToDTO)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public String authenticate(Integer id, String password) {
+        Optional<Admin> optionalAdmin = adminRepository.findById(id);
+        if (optionalAdmin.isPresent() && password.equals(optionalAdmin.get().getPassword())) {
+            return "Welcome";
+        }
+        else{
+            return "Authentication failed";
+        }
+
+    }
 }

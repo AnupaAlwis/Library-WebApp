@@ -3,6 +3,7 @@ package com.librarywebapp.Backend.Service;
 
 import com.librarywebapp.Backend.DTO.Request.CustomerAddDTO;
 import com.librarywebapp.Backend.DTO.Response.CustomerGeneralDTO;
+import com.librarywebapp.Backend.Model.Admin;
 import com.librarywebapp.Backend.Model.Customer;
 import com.librarywebapp.Backend.Repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -104,5 +105,16 @@ public class CustomerService {
                 .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toUnmodifiableList());
+    }
+    public String authenticate(Integer id, String password) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent() && password.equals(optionalCustomer.get().getPassword())) {
+
+            return "Welcome";
+        }
+        else{
+            return "Authentication failed";
+        }
+
     }
 }

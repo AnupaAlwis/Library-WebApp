@@ -19,6 +19,10 @@ import java.util.List;
 public class AdminController {
     private final AdminService adminService;
 
+    @GetMapping("authenticate")
+    public String authenticate(@RequestParam Integer id, @RequestParam String password) {
+        return adminService.authenticate(id,password);
+    }
     @PostMapping("register")
     public ResponseEntity<Admin> register(@RequestBody AdminAddDTO adminAddDTO) {
         return adminService.registerAdmin(adminAddDTO);
