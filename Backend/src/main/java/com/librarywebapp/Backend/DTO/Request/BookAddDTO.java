@@ -6,7 +6,7 @@ import lombok.Data;
 public class BookAddDTO {
     private Integer bookId;
     private String bookName;
-    private String ISBN;
+    private String isbn;
     private String author;
     private Integer price;
     private Integer quantity;

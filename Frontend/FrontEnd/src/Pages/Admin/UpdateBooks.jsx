@@ -4,9 +4,10 @@ export default function UpdateBook() {
     const [bookId, setBookId] = useState("");
     const [bookDetails, setBookDetails] = useState({
         bookName: "",
-        ISBN: "",
+        isbn: "",
         author: "",
         price: "",
+        quantity:""
     });
     const [message, setMessage] = useState("");
 
@@ -83,8 +84,8 @@ export default function UpdateBook() {
                     <label className="block mb-2 font-medium text-gray-700">ISBN:</label>
                     <input
                         type="text"
-                        name="ISBN"
-                        value={bookDetails.ISBN}
+                        name="isbn"
+                        value={bookDetails.isbn}
                         onChange={handleChange}
                         placeholder="ISBN"
                         className="w-full px-4 py-2 border rounded-lg mb-4"
@@ -111,6 +112,17 @@ export default function UpdateBook() {
                         value={bookDetails.price}
                         onChange={handleChange}
                         placeholder="Price"
+                        className="w-full px-4 py-2 border rounded-lg mb-4"
+                    />
+                     <label className="block mb-2 font-medium text-gray-700">
+                        Quantity:
+                    </label>
+                    <input
+                        type="text"
+                        name="quantity"
+                        value={bookDetails.quantity}
+                        onChange={handleChange}
+                        placeholder="Quantity"
                         className="w-full px-4 py-2 border rounded-lg mb-4"
                     />
 

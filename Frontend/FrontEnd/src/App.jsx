@@ -4,7 +4,7 @@ import LandingPage from "./Pages/Admin/LandingPage";
 import AdminPage from "./Pages/Admin/AdminPage";
 import CustomerPage from "./Pages/Admin/CustomerPage";
 import CustomerAddPage from "./Pages/Admin/RegiseterUserPage";
-import CustomerListPage from "./Pages/Admin/CustomerListPage";
+import CustomerListPage from "./Pages/Admin/CustomerGetAll";
 import AddBooks from "./Pages/Admin/AddBooks";
 import DeleteCustomer from "./Pages/Admin/DeleteCustomers";
 import GetReturns from "./Pages/Admin/GetReturns";
@@ -16,6 +16,7 @@ import SearchByBookName from "./Pages/Admin/SearchByBookName";
 import FindUser from "./Pages/Admin/GetUserByID";
 import UpdateCustomer from "./Pages/Admin/UpdateUser";
 import UserPage from "./Pages/Reader/UserPage";
+import AllCustomers from "./Pages/Admin/CustomerGetAll";
 
 const App = () => (
   <Router>
@@ -24,7 +25,7 @@ const App = () => (
       <Route path="/admin" element={<AdminPage />} />
       <Route path="/customer" element={<UserPage />} />
       <Route path="/admin/registerCustomer" element={<CustomerAddPage />} />
-      <Route path="/admin/showAllUsers" element={<CustomerListPage />} />
+      <Route path="/admin/showAllUsers" element={<AllCustomers />} />
       <Route path="/admin/addBooks" element={<AddBooks />} />
       <Route path="/admin/deleteCustomers" element={<DeleteCustomer />} />
       <Route path="/admin/getReturns" element={<GetReturns />} />

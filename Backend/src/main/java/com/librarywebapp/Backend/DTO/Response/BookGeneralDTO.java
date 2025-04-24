@@ -8,7 +8,7 @@ import lombok.Data;
 public class BookGeneralDTO {
     private Integer bookId;
     private String bookName;
-    private String ISBN;
+    private String isbn;
     private String author;
     private Integer price;
     private Integer quantity;

@@ -32,7 +32,7 @@ public class BookService {
     public ResponseEntity<Book> addBook(BookAddDTO bookAddDTO) {
         Book book = new Book();
         book.setBookName(bookAddDTO.getBookName());
-        book.setISBN(bookAddDTO.getISBN());
+        book.setISBN(bookAddDTO.getIsbn());
         book.setAuthor(bookAddDTO.getAuthor());
         book.setPrice(bookAddDTO.getPrice());
         book.setQuantity(bookAddDTO.getQuantity());
@@ -51,7 +51,7 @@ public class BookService {
             Book book = optionalBook.get();
             bookGeneralDTO.setBookId(book.getBookId());
             bookGeneralDTO.setBookName(book.getBookName());
-            bookGeneralDTO.setISBN((book.getISBN()));
+            bookGeneralDTO.setIsbn((book.getISBN()));
             bookGeneralDTO.setAuthor(book.getAuthor());
             bookGeneralDTO.setPrice(book.getPrice());
             bookGeneralDTO.setQuantity(book.getQuantity());
@@ -68,7 +68,7 @@ public class BookService {
         Book book = booksRepository.findById(id).orElseThrow();
         book.setAuthor(bookAddDTO.getAuthor());
         book.setBookName(bookAddDTO.getBookName());
-        book.setISBN(bookAddDTO.getISBN());
+        book.setISBN(bookAddDTO.getIsbn());
         book.setPrice(bookAddDTO.getPrice());
         book.setQuantity(bookAddDTO.getQuantity());
         Book updatedBook = booksRepository.save(book);
@@ -80,7 +80,7 @@ public class BookService {
         BookGeneralDTO bookGeneralDTO = new BookGeneralDTO();
         bookGeneralDTO.setBookId(book.getBookId());
         bookGeneralDTO.setBookName(book.getBookName());
-        bookGeneralDTO.setISBN(book.getISBN());
+        bookGeneralDTO.setIsbn(book.getISBN());
         bookGeneralDTO.setAuthor(book.getAuthor());
         bookGeneralDTO.setPrice(book.getPrice());
         bookGeneralDTO.setQuantity(book.getQuantity());
@@ -154,7 +154,7 @@ public class BookService {
             Book book = optionalBook.get();
             bookGeneralDTO.setBookId(book.getBookId());
             bookGeneralDTO.setBookName(book.getBookName());
-            bookGeneralDTO.setISBN((book.getISBN()));
+            bookGeneralDTO.setIsbn((book.getISBN()));
             bookGeneralDTO.setAuthor(book.getAuthor());
             bookGeneralDTO.setPrice(book.getPrice());
             bookGeneralDTO.setQuantity(book.getQuantity());
