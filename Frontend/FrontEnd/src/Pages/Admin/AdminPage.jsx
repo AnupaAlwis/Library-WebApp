@@ -76,6 +76,40 @@ const AdminPage = () => {
       >
         Delete Book
       </button>
+      <button
+        onClick={() => navigate('/admin/searchByBookName')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Search Book
+      </button>
+      <button
+        onClick={() => navigate('/admin/updateBooks')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Update Book
+      </button>
+
+      <button
+        onClick={() => navigate('/admin/getUserById')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Find User
+      </button>
+
+      <button
+        onClick={() => navigate('/admin/updateUser')}
+        style={{ margin: '10px' }}
+        type="button"
+        className="btn btn-info"
+      >
+        Update User
+      </button>
       {/* <button onClick={() => setShowForm(true)} style={{ margin: '10px' }}>
         Register User
       </button>

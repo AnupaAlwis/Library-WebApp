@@ -12,13 +12,17 @@ import LendBooks from "./Pages/Admin/LendBooks";
 import UpdateBook from "./Pages/Admin/UpdateBooks";
 import GetAllBooks from "./Pages/Admin/GetAllBooksDetails";
 import DeleteBook from "./Pages/Admin/DeleteBook";
+import SearchByBookName from "./Pages/Admin/SearchByBookName";
+import FindUser from "./Pages/Admin/GetUserByID";
+import UpdateCustomer from "./Pages/Admin/UpdateUser";
+import UserPage from "./Pages/Reader/UserPage";
 
 const App = () => (
   <Router>
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/admin" element={<AdminPage />} />
-      <Route path="/customer" element={<CustomerPage />} />
+      <Route path="/customer" element={<UserPage />} />
       <Route path="/admin/registerCustomer" element={<CustomerAddPage />} />
       <Route path="/admin/showAllUsers" element={<CustomerListPage />} />
       <Route path="/admin/addBooks" element={<AddBooks />} />
@@ -28,6 +32,10 @@ const App = () => (
       <Route path="/admin/updateBooks" element={<UpdateBook />} />
       <Route path="/admin/getAllBooks" element={<GetAllBooks/>}/>
       <Route path="/admin/deleteBook" element = {<DeleteBook/>}/>
+      <Route path="/admin/searchByBookName" element = {<SearchByBookName/>}/>
+      <Route path="/admin/getUserById" element = {<FindUser/>}/> 
+      <Route path="/admin/updateUser" element={<UpdateCustomer/>}/>
+      <Route path="/user/updateUserByUser" element={<UpdateCustomer/>}/>
     </Routes>
   </Router>
 );
