@@ -17,6 +17,7 @@ import FindUser from "./Pages/Admin/GetUserByID";
 import UpdateCustomer from "./Pages/Admin/UpdateUser";
 import UserPage from "./Pages/Reader/UserPage";
 import AllCustomers from "./Pages/Admin/CustomerGetAll";
+import './index.css';
 
 const App = () => (
   <Router>

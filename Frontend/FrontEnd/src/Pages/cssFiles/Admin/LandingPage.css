@@ -1,0 +1,102 @@
+.landing-page-title {
+    color: #FFFFFF;
+    font-family: sans-serif
+}
+
+.admin-btn {
+    background-color: #50b92d;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+
+}
+
+.landing-page-button-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-page-authentication-pop-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.landing-page-pop-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #10262a;
+    border: 2px dashed #50b92d;
+    border-radius: 10px;
+    width: auto;
+    padding: 10px 50px 10px 50px;
+
+}
+
+.landing-page-authentication-popup-heading {
+    color: #FFFFFF;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 1rem 0.75rem 0.5rem 0.75rem;
+    background-color: #10262a;
+    border: 2px solid #50b92d;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: transparent;
+}
+
+.floating-label {
+    position: absolute;
+    top: 1rem;
+    left: 0.75rem;
+    color: #aaa;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+/* Float label when focused or has value */
+.input-field:focus+.floating-label,
+.input-field:not(:placeholder-shown)+.floating-label {
+    top: 0.3rem;
+    font-size: 0.75rem;
+    color: white;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    /* blue border when focused */
+}
+
+.landing-page-button{
+    background-color: #50b92d;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+    margin: 0px 20px 0px 20px;
+
+}
+
+.landing-page-authentication-message{
+    color: #FFFFFF;
+}
