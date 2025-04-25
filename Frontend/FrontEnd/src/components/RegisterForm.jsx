@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../Pages/cssFiles/Admin/RegisterUserForm.css';
 
 const RegisterForm = ({ onClose }) => {
   const [form, setForm] = useState({
@@ -30,18 +31,50 @@ const RegisterForm = ({ onClose }) => {
 
   return (
     <div>
-      <h3>Register User</h3>
+      <h3 className="register-user-heading">Register User</h3>
       <form onSubmit={handleSubmit}>
-        <input name="firstName" placeholder="First Name" onChange={handleChange} />
-        <input name="lastName" placeholder="Last Name" onChange={handleChange} />
-        <input name="email" placeholder="Email" onChange={handleChange} />
-        <input name="address" placeholder="Address" onChange={handleChange} />
-        <input name="password" type="password" placeholder="Password" onChange={handleChange} />
-        <input name="phoneNumber" placeholder="Phone Number" onChange={handleChange} />
-        <input name="fine" placeholder="Fine" type="number" onChange={handleChange} />
+        <div className="register-user-form">
+
+          <div className="input-wrapper">
+            <input className="input-field" name="firstName" placeholder=" " onChange={handleChange} required />
+            <label className="floating-label">First Name</label>
+          </div>
+
+          <div className="input-wrapper">
+            <input className="input-field" name="lastName" placeholder=" " onChange={handleChange} required />
+            <label className="floating-label">Last Name</label>
+          </div>
+
+          <div className="input-wrapper">
+            <input className="input-field" name="email" type="email" placeholder=" " onChange={handleChange} required />
+            <label className="floating-label">Email</label>
+          </div>
+
+          <div className="input-wrapper">
+            <input className="input-field" name="address" placeholder=" " onChange={handleChange} required />
+            <label className="floating-label">Address</label>
+          </div>
+
+          <div className="input-wrapper">
+            <input className="input-field" name="password" type="password" placeholder=" " onChange={handleChange} required />
+            <label className="floating-label">Password</label>
+          </div>
+
+          <div className="input-wrapper">
+            <input className="input-field" name="phoneNumber" placeholder=" " onChange={handleChange} required />
+            <label className="floating-label">Phone Number</label>
+          </div>
+
+          <div className="input-wrapper">
+            <input className="input-field" name="fine" type="number" placeholder=" " onChange={handleChange} />
+            <label className="floating-label">Fine</label>
+          </div>
+
+        </div>
+
         <br />
-        <button type="submit">Submit</button>
-        <button type="button" onClick={onClose}>Cancel</button>
+        <button className='user-register-form-button' type="submit">Submit</button>
+        <button className='user-register-form-button' type="button" onClick={onClose}>Cancel</button>
       </form>
     </div>
   );

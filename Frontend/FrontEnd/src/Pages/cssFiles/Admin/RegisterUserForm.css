@@ -1,0 +1,68 @@
+.register-user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 1rem 0.75rem 0.5rem;
+    background-color: black;
+    border: 2px solid #50b92d;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+}
+
+.input-field::placeholder {
+    color: transparent;
+}
+
+.floating-label {
+    position: absolute;
+    top: 1rem;
+    left: 0.75rem;
+    color: #bbb;
+    /* ash/gray initially */
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+/* Float label on focus or if text is present */
+.input-field:focus+.floating-label,
+.input-field:not(:placeholder-shown)+.floating-label {
+    top: 0.3rem;
+    font-size: 0.75rem;
+    color: white;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    /* blue border on focus */
+}
+
+
+.register-user-heading {
+    color: #FFFFFF;
+}
+
+.user-register-form-button{
+    background-color: #007bff;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    margin-left: 20px;
+}
+.user-register-form-button:hover{
+    background-color: #0056b3;
+    border:2px solid #007bff;
+}
