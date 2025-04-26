@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import '../cssFiles/Admin/DeleteUser.css'; // Import the same CSS file
 
 export default function DeleteBook() {
@@ -19,11 +20,36 @@ export default function DeleteBook() {
             });
 
             if (response.ok) {
-                setMessage(`Book with ID ${bookId} deleted successfully.`);
+                // Show success pop-up
+                Swal.fire({
+                    title: 'Success!',
+                    text: `Book with ID ${bookId} deleted successfully.`,
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                }).then(() => {
+                    // Clear bookId and message after success
+                    setBookId('');
+                    setMessage('');
+                });
             } else {
+                // Get error data (if any) and show error pop-up
+                const errorData = await response.json();
+                Swal.fire({
+                    title: 'Error!',
+                    text: errorData.message || `Failed to delete book. Server responded with status: ${response.status}`,
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                });
                 setMessage(`Failed to delete book. Server responded with status: ${response.status}`);
             }
         } catch (error) {
+            // Show error pop-up if the request fails
+            Swal.fire({
+                title: 'Error!',
+                text: `Error: ${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
             setMessage(`Error: ${error.message}`);
         }
     };
