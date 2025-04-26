@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import RegisterForm from "../../components/RegisterForm";
 
 const RegisterUserPage = () => {
-  const [showForm, setShowForm] = useState(true); // Default: true
-
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      {showForm && <RegisterForm onClose={() => setShowForm(false)} />}
+      <RegisterForm />
     </div>
   );
 };
