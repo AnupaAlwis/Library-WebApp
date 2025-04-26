@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../cssFiles/Admin/UpdateUser.css"; // Importing the same CSS
 
 export default function UpdateBook() {
     const [bookId, setBookId] = useState("");
@@ -7,14 +8,14 @@ export default function UpdateBook() {
         isbn: "",
         author: "",
         price: "",
-        quantity:""
+        quantity: ""
     });
     const [message, setMessage] = useState("");
 
     const handleChange = (e) => {
         setBookDetails({
             ...bookDetails,
-            [e.target.name]:
+            [e.target.name]: 
                 e.target.name === "price" ? parseFloat(e.target.value) : e.target.value,
         });
     };
@@ -52,94 +53,101 @@ export default function UpdateBook() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-yellow-100 p-6">
-            <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-6 text-center text-yellow-700">
-                    Update Book Details
-                </h2>
-                <form onSubmit={handleSubmit}>
-                    <label className="block mb-2 font-medium text-gray-700">
-                        Book ID:
-                    </label>
-                    <input
-                        type="text"
-                        value={bookId}
-                        onChange={(e) => setBookId(e.target.value)}
-                        placeholder="Enter Book ID"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+        <div className="p-6 max-w-xl mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="update-user-form">
+                    <h2 className="update-user-title">Update Book</h2>
 
-                    <label className="block mb-2 font-medium text-gray-700">
-                        Book Name:
-                    </label>
-                    <input
-                        type="text"
-                        name="bookName"
-                        value={bookDetails.bookName}
-                        onChange={handleChange}
-                        placeholder="Book Name"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            type="text"
+                            name="bookId"
+                            placeholder=" "
+                            value={bookId}
+                            onChange={(e) => setBookId(e.target.value)}
+                            className="input-field"
+                            required
+                        />
+                        <label className="floating-label">Book ID</label>
+                    </div>
 
-                    <label className="block mb-2 font-medium text-gray-700">ISBN:</label>
-                    <input
-                        type="text"
-                        name="isbn"
-                        value={bookDetails.isbn}
-                        onChange={handleChange}
-                        placeholder="ISBN"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            type="text"
+                            name="bookName"
+                            placeholder=" "
+                            value={bookDetails.bookName}
+                            onChange={handleChange}
+                            className="input-field"
+                            required
+                        />
+                        <label className="floating-label">Book Name</label>
+                    </div>
 
-                    <label className="block mb-2 font-medium text-gray-700">
-                        Author:
-                    </label>
-                    <input
-                        type="text"
-                        name="author"
-                        value={bookDetails.author}
-                        onChange={handleChange}
-                        placeholder="Author Name"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            type="text"
+                            name="isbn"
+                            placeholder=" "
+                            value={bookDetails.isbn}
+                            onChange={handleChange}
+                            className="input-field"
+                            required
+                        />
+                        <label className="floating-label">ISBN</label>
+                    </div>
 
-                    <label className="block mb-2 font-medium text-gray-700">
-                        Price (in cents):
-                    </label>
-                    <input
-                        type="number"
-                        name="price"
-                        value={bookDetails.price}
-                        onChange={handleChange}
-                        placeholder="Price"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
-                     <label className="block mb-2 font-medium text-gray-700">
-                        Quantity:
-                    </label>
-                    <input
-                        type="text"
-                        name="quantity"
-                        value={bookDetails.quantity}
-                        onChange={handleChange}
-                        placeholder="Quantity"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            type="text"
+                            name="author"
+                            placeholder=" "
+                            value={bookDetails.author}
+                            onChange={handleChange}
+                            className="input-field"
+                            required
+                        />
+                        <label className="floating-label">Author</label>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <input
+                            type="number"
+                            name="price"
+                            placeholder=" "
+                            value={bookDetails.price}
+                            onChange={handleChange}
+                            className="input-field"
+                            required
+                        />
+                        <label className="floating-label">Price (in cents)</label>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <input
+                            type="number"
+                            name="quantity"
+                            placeholder=" "
+                            value={bookDetails.quantity}
+                            onChange={handleChange}
+                            className="input-field"
+                            required
+                        />
+                        <label className="floating-label">Quantity</label>
+                    </div>
 
                     <button
                         type="submit"
-                        className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-xl transition duration-300"
+                        className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
                     >
                         Update Book
                     </button>
-                </form>
+                </div>
+            </form>
 
-                {message && (
-                    <div className="mt-4 text-center text-sm text-gray-700">
-                        {message}
-                    </div>
-                )}
-            </div>
+            {message && (
+                <p className="mt-4 text-center text-red-600">{message}</p>
+            )}
         </div>
     );
 }
