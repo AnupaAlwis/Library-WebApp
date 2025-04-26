@@ -1,0 +1,18 @@
+.admin-page-show-all-users-title{
+    color: white;
+    font-family: sans-serif;
+    font-style: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.admin-page-get-all-customers-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-page-table-get-all-users{
+    border: 2px dashed #50b92d;
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../cssFiles/Admin/GetAllCustomers.css';
 
 export default function AllCustomers() {
     const [customers, setCustomers] = useState([]);
@@ -24,8 +25,8 @@ export default function AllCustomers() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
-            <h1 className="text-3xl font-bold text-blue-600 mb-6">All Customers</h1>
+        <div className="admin-page-get-all-customers-page">
+            <h1 className="admin-page-show-all-users-title">All Customers</h1>
 
             {loading ? (
                 <p className="text-gray-600">Loading...</p>
@@ -33,20 +34,27 @@ export default function AllCustomers() {
                 <p className="text-red-500">{error}</p>
             ) : (
                 <div className="overflow-x-auto w-full max-w-6xl">
-                    <table className="min-w-full bg-white border rounded-xl shadow-md">
-                        <thead className="bg-blue-600 text-white">
+                    <table className="w-full border-2 border-green-700 rounded-lg overflow-hidden text-white admin-page-table-get-all-users">
+                        <thead style={{ backgroundColor: '#000000', color: 'white', fontWeight: 'bold' }}>
                             <tr>
-                                <th className="py-3 px-4 text-left">Customer ID</th>
-                                <th className="py-3 px-4 text-left">First Name</th>
-                                <th className="py-3 px-4 text-left">Last Name</th>
-                                <th className="py-3 px-4 text-left">Email</th>
-                                <th className="py-3 px-4 text-left">Address</th>
-                                <th className="py-3 px-4 text-left">Fine</th>
+                                <th className="py-3 px-4 text-left font-bold">Customer ID</th>
+                                <th className="py-3 px-4 text-left font-bold">First Name</th>
+                                <th className="py-3 px-4 text-left font-bold">Last Name</th>
+                                <th className="py-3 px-4 text-left font-bold">Email</th>
+                                <th className="py-3 px-4 text-left font-bold">Address</th>
+                                <th className="py-3 px-4 text-left font-bold">Fine</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {customers.map((customer) => (
-                                <tr key={customer.customerId} className="border-t hover:bg-gray-50">
+                            {customers.map((customer, index) => (
+                                <tr
+                                    key={customer.customerId}
+                                    style={{
+                                        backgroundColor: index % 2 === 0 ? '#10262a' : '#000000',
+                                        transition: 'background-color 0.3s',
+                                    }}
+                                    className="border-t hover:bg-green-300"
+                                >
                                     <td className="py-2 px-4">{customer.customerId}</td>
                                     <td className="py-2 px-4">{customer.firstName}</td>
                                     <td className="py-2 px-4">{customer.lastName}</td>
