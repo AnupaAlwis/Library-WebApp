@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../cssFiles/Admin/RegisterUserForm.css'
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import '../cssFiles/Admin/RegisterUserForm.css';
 
 export default function LendBook() {
     const [bookId, setBookId] = useState('');
@@ -10,7 +11,12 @@ export default function LendBook() {
         e.preventDefault();
 
         if (!bookId || !quantity) {
-            setMessage('Please enter both Book ID and Quantity.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please enter both Book ID and Quantity.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
             return;
         }
 
@@ -19,13 +25,50 @@ export default function LendBook() {
                 method: 'PUT',
             });
 
-            if (response.ok) {
-                setMessage(`Successfully lent ${quantity} book(s) with ID ${bookId}.`);
+            const contentType = response.headers.get('content-type');
+            let responseData;
+
+            if (contentType && contentType.includes('application/json')) {
+                responseData = await response.json();
             } else {
-                setMessage(`Failed to lend book. Server responded with status: ${response.status}`);
+                responseData = await response.text();
+            }
+
+            if (response.ok) {
+                if (typeof responseData === 'string' && responseData.includes("Error")) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Book with the ID not found',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: `Successfully lent ${quantity} book(s) with ID ${bookId}.`,
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    }).then(() => {
+                        setBookId('');
+                        setQuantity('');
+                    });
+                }
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Failed: ${responseData}`,
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                });
             }
         } catch (error) {
-            setMessage(`Error: ${error.message}`);
+            Swal.fire({
+                title: 'Error!',
+                text: `Network or server error occurred.`,
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+            console.error(error);
         }
     };
 
