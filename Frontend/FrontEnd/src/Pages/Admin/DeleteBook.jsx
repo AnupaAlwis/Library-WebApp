@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../cssFiles/Admin/DeleteUser.css'; // Import the same CSS file
 
 export default function DeleteBook() {
     const [bookId, setBookId] = useState('');
@@ -8,7 +9,7 @@ export default function DeleteBook() {
         e.preventDefault();
 
         if (!bookId) {
-            setMessage('Please enter a user ID.');
+            setMessage('Please enter a book ID.');
             return;
         }
 
@@ -28,27 +29,27 @@ export default function DeleteBook() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-            <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-4 text-center text-red-600">Delete Book</h2>
+        <div className="delete-users-page">
+            <div className="delete-users-container">
+                <h2 className="delete-users-page-title">Delete Book</h2>
                 <form onSubmit={handleDelete}>
-                    <label className="block mb-2 font-medium text-gray-700">Enter Book ID:</label>
+                    <label className="delete-users-page-label">Enter Book ID:</label>
                     <input
                         type="text"
                         value={bookId}
                         onChange={(e) => setBookId(e.target.value)}
                         placeholder="Book ID"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
+                        className="delete-user-input"
                     />
                     <button
                         type="submit"
-                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl transition duration-300"
+                        className="delete-user-button"
                     >
                         Delete Book
                     </button>
                 </form>
                 {message && (
-                    <div className="mt-4 text-center text-sm text-gray-700">{message}</div>
+                    <div className="delete-user-message">{message}</div>
                 )}
             </div>
         </div>
