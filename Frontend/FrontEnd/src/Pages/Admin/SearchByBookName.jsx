@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'
+import '../cssFiles/Admin/FindUserById.css'; // reuse the same CSS
 
 function BookSearch() {
   const [bookName, setBookName] = useState('');
@@ -11,57 +12,67 @@ function BookSearch() {
       const response = await axios.get(`http://localhost:8080/book/searchName`, {
         params: { name: bookName }
       });
+
+      console.log(response);
       setBook(response.data);
       setError('');
     } catch (err) {
+      console.log(err)
       setBook(null);
       setError('Book not found or an error occurred.');
     }
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-xl font-bold mb-4">Search Book by Name</h1>
-      <input
-        type="text"
-        className="border px-3 py-2 w-full mb-3"
-        placeholder="Enter book name"
-        value={bookName}
-        onChange={(e) => setBookName(e.target.value)}
-      />
-      <button
-        className="bg-blue-600 text-white px-4 py-2 rounded"
-        onClick={handleSearch}
-      >
-        Search
-      </button>
+    <div className="find-user-page">
+      <div className="find-user-container">
+        <h2 className="find-user-title">Search Book by Name</h2>
 
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+        <div className="find-user-input-group">
+          <input
+            type="text"
+            placeholder="Enter Book Name"
+            value={bookName}
+            onChange={(e) => setBookName(e.target.value)}
+            className="find-user-input"
+          />
+          <button
+            onClick={handleSearch}
+            className="find-user-button"
+          >
+            Search
+          </button>
+        </div>
 
-      {book && (
-        <table className="mt-6 w-full border border-gray-300">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border px-3 py-2">Book ID</th>
-              <th className="border px-3 py-2">Name</th>
-              <th className="border px-3 py-2">Author</th>
-              <th className="border px-3 py-2">Price</th>
-              <th className="border px-3 py-2">Quantity</th>
-              <th className="border px-3 py-2">ISBN</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="border px-3 py-2">{book.bookId}</td>
-              <td className="border px-3 py-2">{book.bookName}</td>
-              <td className="border px-3 py-2">{book.author}</td>
-              <td className="border px-3 py-2">{book.price}</td>
-              <td className="border px-3 py-2">{book.quantity ?? 'N/A'}</td>
-              <td className="border px-3 py-2">{book.isbn}</td>
-            </tr>
-          </tbody>
-        </table>
-      )}
+        {error && <p className="find-user-error">{error}</p>}
+
+        {book && (
+          <div className="find-user-table-container">
+            <table className="find-user-table">
+              <thead>
+                <tr>
+                  <th>Book ID</th>
+                  <th>Name</th>
+                  <th>Author</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>ISBN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{book.bookId}</td>
+                  <td>{book.bookName}</td>
+                  <td>{book.author}</td>
+                  <td>{book.price}</td>
+                  <td>{book.quantity ?? 'N/A'}</td>
+                  <td>{book.isbn}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
