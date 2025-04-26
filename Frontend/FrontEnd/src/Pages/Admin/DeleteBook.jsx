@@ -36,7 +36,7 @@ export default function DeleteBook() {
                 const errorData = await response.json();
                 Swal.fire({
                     title: 'Error!',
-                    text: errorData.message || `Failed to delete book. Server responded with status: ${response.status}`,
+                    text: 'Error Book with that ID not found',
                     icon: 'error',
                     confirmButtonText: 'OK',
                 });
