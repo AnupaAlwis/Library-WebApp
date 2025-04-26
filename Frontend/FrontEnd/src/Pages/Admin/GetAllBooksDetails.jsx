@@ -1,73 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import '../cssFiles/Admin/GetAllCustomers.css'; // Reuse the same CSS file
 
 export default function GetAllBooks() {
     const [books, setBooks] = useState([]);
     const [message, setMessage] = useState('');
+    
+    // Fetch books when the page loads
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/book/all');
 
-    const fetchBooks = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/book/all');
+                if (!response.ok) {
+                    throw new Error(`Server responded with status ${response.status}`);
+                }
 
-            if (!response.ok) {
-                throw new Error(`Server responded with status ${response.status}`);
+                const data = await response.json();
+                setBooks(data);
+                setMessage('');
+            } catch (error) {
+                setMessage(`Error: ${error.message}`);
             }
+        };
 
-            const data = await response.json();
-            setBooks(data);
-            setMessage('');
-        } catch (error) {
-            setMessage(`Error: ${error.message}`);
-        }
-    };
+        fetchBooks();
+    }, []); // Empty dependency array ensures this effect runs once when the component mounts
 
     return (
-        <div className="min-h-screen p-6 bg-blue-50">
-            <div className="max-w-5xl mx-auto">
-                <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">All Book Details</h2>
-                <div className="flex justify-center mb-4">
-                    <button
-                        onClick={fetchBooks}
-                        className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition duration-300"
-                    >
-                        Get All Book Details
-                    </button>
-                </div>
+        <div className="admin-page-get-all-customers-page">
+            <h1 className="admin-page-show-all-users-title">All Book Details</h1>
 
-                {message && <p className="text-center text-red-600 mb-4">{message}</p>}
+            {message && <p className="text-center text-red-600 mb-4">{message}</p>}
 
-                {books.length > 0 && (
-                    <div className="overflow-x-auto">
-                        <table className="w-full bg-white rounded-xl shadow-md">
-                            <thead className="bg-blue-100">
-                                <tr>
-                                    <th className="px-4 py-2">Book ID</th>
-                                    <th className="px-4 py-2">Name</th>
-                                    <th className="px-4 py-2">Author</th>
-                                    <th className="px-4 py-2">ISBN</th>
-                                    <th className="px-4 py-2">Price</th>
-                                    <th className="px-4 py-2">Quantity</th>
+            {books.length > 0 ? (
+                <div className="overflow-x-auto w-full max-w-6xl">
+                    <table className="w-full border-2 border-green-700 rounded-lg overflow-hidden text-white admin-page-table-get-all-users">
+                        <thead style={{ backgroundColor: '#000000', color: 'white', fontWeight: 'bold' }}>
+                            <tr>
+                                <th className="py-3 px-4 text-left font-bold">Book ID</th>
+                                <th className="py-3 px-4 text-left font-bold">Name</th>
+                                <th className="py-3 px-4 text-left font-bold">Author</th>
+                                <th className="py-3 px-4 text-left font-bold">ISBN</th>
+                                <th className="py-3 px-4 text-left font-bold">Price</th>
+                                <th className="py-3 px-4 text-left font-bold">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {books.map((book, index) => (
+                                <tr
+                                    key={book.bookId}
+                                    style={{
+                                        backgroundColor: index % 2 === 0 ? '#10262a' : '#000000',
+                                        transition: 'background-color 0.3s',
+                                    }}
+                                    className="border-t hover:bg-green-300"
+                                >
+                                    <td className="py-2 px-4">{book.bookId}</td>
+                                    <td className="py-2 px-4">{book.bookName}</td>
+                                    <td className="py-2 px-4">{book.author}</td>
+                                    <td className="py-2 px-4">{book.isbn}</td>
+                                    <td className="py-2 px-4">Rs. {book.price.toFixed(2)}</td>
+                                    <td className="py-2 px-4">{book.quantity ?? 'N/A'}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {books.map((book) => (
-                                    <tr key={book.bookId} className="text-center border-t">
-                                        <td className="px-4 py-2">{book.bookId}</td>
-                                        <td className="px-4 py-2">{book.bookName}</td>
-                                        <td className="px-4 py-2">{book.author}</td>
-                                        <td className="px-4 py-2">{book.isbn}</td>
-                                        <td className="px-4 py-2">{book.price}</td>
-                                        <td className="px-4 py-2">{book.quantity ?? 'N/A'}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
-
-                {books.length === 0 && !message && (
-                    <p className="text-center text-gray-500 mt-6">No books fetched yet.</p>
-                )}
-            </div>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            ) : (
+                !message && (
+                    <p className="text-center text-gray-400 mt-6">No books fetched yet.</p>
+                )
+            )}
         </div>
     );
 }
