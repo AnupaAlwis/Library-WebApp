@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../api";
+import '../Pages/cssFiles/Admin/RegisterUserForm.css';
 
 const AddBooksForm = () => {
     const [formData, setFormData] = useState({
@@ -8,7 +9,6 @@ const AddBooksForm = () => {
         author: "",
         price: 0,
         quantity: 0
-        
     });
 
     const handleChange = (e) => {
@@ -28,14 +28,39 @@ const AddBooksForm = () => {
 
     return (
         <div>
-            <h2>Register Customer</h2>
+            <h3 className="register-user-heading">Add Book</h3>
             <form onSubmit={handleSubmit}>
-                <input name="bookName" placeholder="Book Name" onChange={handleChange} required />
-                <input name="isbn" placeholder="ISBN" onChange={handleChange} required />
-                <input name="author" placeholder="Author" onChange={handleChange} required />
-                <input name="price" placeholder="Price" onChange={handleChange} />
-                <input name="quantity" placeholder="Quantity" onChange={handleChange} />
-                <button type="submit">Register</button>
+                <div className="register-user-form">
+
+                    <div className="input-wrapper">
+                        <input className="input-field" name="bookName" placeholder=" " onChange={handleChange} required />
+                        <label className="floating-label">Book Name</label>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <input className="input-field" name="isbn" placeholder=" " onChange={handleChange} required />
+                        <label className="floating-label">ISBN</label>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <input className="input-field" name="author" placeholder=" " onChange={handleChange} required />
+                        <label className="floating-label">Author</label>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <input className="input-field" name="price" placeholder=" " onChange={handleChange} />
+                        <label className="floating-label">Price</label>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <input className="input-field" name="quantity" placeholder=" " onChange={handleChange} />
+                        <label className="floating-label">Quantity</label>
+                    </div>
+
+                </div>
+
+                <br />
+                <button className="user-register-form-button" type="submit">Add Book</button>
             </form>
         </div>
     );
