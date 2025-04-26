@@ -1,3 +1,14 @@
+/* Container Styling */
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; /* Optional: Set a max width for better form appearance */
+    margin: 0 auto;
+}
+
+/* Form Styling */
 .register-user-form {
     display: flex;
     flex-direction: column;
@@ -5,11 +16,13 @@
     align-items: center;
 }
 
+/* Input Field Wrapper */
 .input-wrapper {
     position: relative;
     margin-bottom: 1.5rem;
 }
 
+/* Input Field */
 .input-field {
     width: 100%;
     padding: 1rem 0.75rem 0.5rem;
@@ -21,39 +34,42 @@
     font-size: 1rem;
 }
 
+/* Placeholder hidden initially */
 .input-field::placeholder {
     color: transparent;
 }
 
+/* Floating Label */
 .floating-label {
     position: absolute;
     top: 1rem;
     left: 0.75rem;
     color: #bbb;
-    /* ash/gray initially */
     pointer-events: none;
     transition: all 0.2s ease;
 }
 
-/* Float label on focus or if text is present */
-.input-field:focus+.floating-label,
-.input-field:not(:placeholder-shown)+.floating-label {
+/* Float label on focus or when value is present */
+.input-field:focus + .floating-label,
+.input-field:not(:placeholder-shown) + .floating-label,
+.input-field.has-value + .floating-label {
     top: 0.3rem;
     font-size: 0.75rem;
     color: white;
 }
 
+/* Input Field Focus */
 .input-field:focus {
     border-color: #007bff;
-    /* blue border on focus */
 }
 
-
+/* Heading Styling */
 .register-user-heading {
     color: #FFFFFF;
 }
 
-.user-register-form-button{
+/* Button Styling */
+.user-register-form-button {
     background-color: #007bff;
     color: #FFFFFF;
     border-radius: 10px;
@@ -61,8 +77,71 @@
     height: 50px;
     border: none;
     margin-left: 20px;
+    cursor: pointer;
 }
-.user-register-form-button:hover{
+
+.user-register-form-button:hover {
     background-color: #0056b3;
-    border:2px solid #007bff;
+    border: 2px solid #007bff;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Special Styling for Date Input (Using second file's CSS) */
+.date-input {
+    position: relative;
+    padding-top: 1rem;
+}
+
+/* Date input specific styles */
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 1.5em; /* Ensure consistent height */
+    background-color: black;
+    color: white;
+    color-scheme: dark; /* For dark mode calendar */
+}
+
+/* Calendar icon styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+/* Style for when date has value */
+input[type="date"]:valid + .floating-label,
+.date-input.has-value + .floating-label {
+    top: 0.3rem;
+    font-size: 0.75rem;
+    color: white;
+}
+
+/* Message Styling */
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-gray-700 {
+    color: #a0aec0;
 }

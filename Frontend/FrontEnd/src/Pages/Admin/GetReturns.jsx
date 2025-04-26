@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../cssFiles/Admin/RegisterUserForm.css'; 
 
 export default function GetReturns() {
     const [bookId, setBookId] = useState('');
@@ -31,58 +32,74 @@ export default function GetReturns() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-blue-100 p-6">
-            <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">Return Book</h2>
-                <form onSubmit={handleReturn}>
-                    <label className="block mb-2 text-gray-700 font-medium">Book ID:</label>
-                    <input
-                        type="text"
-                        value={bookId}
-                        onChange={(e) => setBookId(e.target.value)}
-                        placeholder="Enter Book ID"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+        <div className="centered-container">
+            <h3 className="register-user-heading">Return Book</h3>
+            <form onSubmit={handleReturn}>
+                <div className="register-user-form">
 
-                    <label className="block mb-2 text-gray-700 font-medium">Quantity:</label>
-                    <input
-                        type="number"
-                        min="1"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                        placeholder="Enter Quantity"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            className="input-field"
+                            name="bookId"
+                            value={bookId}
+                            onChange={(e) => setBookId(e.target.value)}
+                            placeholder=" "
+                            required
+                        />
+                        <label className="floating-label">Book ID</label>
+                    </div>
 
-                    <label className="block mb-2 text-gray-700 font-medium">User ID:</label>
-                    <input
-                        type="text"
-                        value={userId}
-                        onChange={(e) => setUserId(e.target.value)}
-                        placeholder="Enter User ID"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            className="input-field"
+                            type="number"
+                            name="quantity"
+                            min="1"
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                            placeholder=" "
+                            required
+                        />
+                        <label className="floating-label">Quantity</label>
+                    </div>
 
-                    <label className="block mb-2 text-gray-700 font-medium">Borrow Date:</label>
-                    <input
-                        type="date"
-                        value={borrowDate}
-                        onChange={(e) => setBorrowDate(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            className="input-field"
+                            name="userId"
+                            value={userId}
+                            onChange={(e) => setUserId(e.target.value)}
+                            placeholder=" "
+                            required
+                        />
+                        <label className="floating-label">User ID</label>
+                    </div>
 
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl transition duration-300"
-                    >
-                        Return Book
-                    </button>
-                </form>
+                    <div className="input-wrapper">
+                        <input
+                            className="input-field date-input" 
+                            type="date"
+                            name="borrowDate"
+                            value={borrowDate}
+                            onChange={(e) => setBorrowDate(e.target.value)}
+                            required
+                        />
+                        <label className={`floating-label ${borrowDate ? 'floating-label-focused' : ''}`}>
+                            Borrow Date
+                        </label>
+                    </div>
 
-                {message && (
-                    <div className="mt-4 text-center text-sm text-gray-700">{message}</div>
-                )}
-            </div>
+                </div>
+
+                <br />
+                <div className="button-container">
+                    <button className="user-register-form-button" type="submit">Return Book</button>
+                </div>
+            </form>
+
+            {message && (
+                <div className="mt-4 text-center text-sm text-gray-700">{message}</div>
+            )}
         </div>
     );
 }
