@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';  // Import SweetAlert2
 import "../cssFiles/Admin/UpdateUser.css"
 
 const UpdateCustomer = () => {
@@ -12,6 +13,7 @@ const UpdateCustomer = () => {
         fine: ''
     });
     const [message, setMessage] = useState('');
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -19,6 +21,7 @@ const UpdateCustomer = () => {
             [name]: value
         }));
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!customerId) {
@@ -37,6 +40,14 @@ const UpdateCustomer = () => {
                 })
             });
             if (res.ok) {
+                // Show success pop-up using SweetAlert2
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Customer updated successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
                 setMessage('Customer updated successfully!');
             } else {
                 const errorData = await res.json();
@@ -46,6 +57,7 @@ const UpdateCustomer = () => {
             setMessage('Error: Could not connect to the server.');
         }
     };
+
     return (
         <div className="p-6 max-w-xl mx-auto">
             <form onSubmit={handleSubmit} className="space-y-4">

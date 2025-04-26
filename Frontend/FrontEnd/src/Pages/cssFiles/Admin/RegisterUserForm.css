@@ -52,7 +52,7 @@
     color: #FFFFFF;
 }
 
-.user-register-form-button{
+.user-register-form-button {
     background-color: #007bff;
     color: #FFFFFF;
     border-radius: 10px;
@@ -61,8 +61,11 @@
     border: none;
     margin-left: 20px;
 }
-.user-register-form-button:hover{
+
+.user-register-form-button:hover {
     background-color: #0056b3;
-    border:2px solid #007bff;
+    border: 2px solid #007bff;
 }
+
+
 
