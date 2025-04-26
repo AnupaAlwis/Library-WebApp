@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../cssFiles/Admin/FindUserById.css';
 
 const FindUser = () => {
     const [userId, setUserId] = useState('');
@@ -26,51 +27,55 @@ const FindUser = () => {
     };
 
     return (
-        <div className="p-6 max-w-xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4">Find User by ID</h2>
+        <div className="find-user-page">
+            <div className="find-user-container">
+                <h2 className="find-user-title">Find User by ID</h2>
 
-            <div className="flex space-x-2 mb-4">
-                <input
-                    type="text"
-                    placeholder="Enter User ID"
-                    value={userId}
-                    onChange={(e) => setUserId(e.target.value)}
-                    className="flex-1 p-2 border rounded"
-                />
-                <button
-                    onClick={fetchUserDetails}
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                >
-                    Find User
-                </button>
+                <div className="find-user-input-group">
+                    <input
+                        type="text"
+                        placeholder="Enter User ID"
+                        value={userId}
+                        onChange={(e) => setUserId(e.target.value)}
+                        className="find-user-input"
+                    />
+                    <button
+                        onClick={fetchUserDetails}
+                        className="find-user-button"
+                    >
+                        Find User
+                    </button>
+                </div>
+
+                {error && <p className="find-user-error">{error}</p>}
+
+                {userDetails && (
+                    <div className="find-user-table-container">
+                        <table className="find-user-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Fine</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{userDetails.customerId}</td>
+                                    <td>{userDetails.firstName}</td>
+                                    <td>{userDetails.lastName}</td>
+                                    <td>{userDetails.email}</td>
+                                    <td>{userDetails.address}</td>
+                                    <td>{userDetails.fine}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
             </div>
-
-            {error && <p className="text-red-600 mb-4">{error}</p>}
-
-            {userDetails && (
-                <table className="w-full border border-collapse">
-                    <thead>
-                        <tr className="bg-gray-200">
-                            <th className="border p-2">Customer ID</th>
-                            <th className="border p-2">First Name</th>
-                            <th className="border p-2">Last Name</th>
-                            <th className="border p-2">Email</th>
-                            <th className="border p-2">Address</th>
-                            <th className="border p-2">Fine</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className="border p-2">{userDetails.customerId}</td>
-                            <td className="border p-2">{userDetails.firstName}</td>
-                            <td className="border p-2">{userDetails.lastName}</td>
-                            <td className="border p-2">{userDetails.email}</td>
-                            <td className="border p-2">{userDetails.address}</td>
-                            <td className="border p-2">{userDetails.fine}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            )}
         </div>
     );
 };
