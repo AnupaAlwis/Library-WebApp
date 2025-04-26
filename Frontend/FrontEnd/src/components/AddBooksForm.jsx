@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import api from "../api";
+import Swal from 'sweetalert2'; 
 import '../Pages/cssFiles/Admin/RegisterUserForm.css';
 
-const AddBooksForm = () => {
+const AddBooksForm = () => { // <-- Removed onSuccess
     const [formData, setFormData] = useState({
         bookName: "",
         isbn: "",
         author: "",
-        price: 0,
-        quantity: 0
+        price: "",
+        quantity: ""
     });
 
     const handleChange = (e) => {
@@ -19,10 +20,31 @@ const AddBooksForm = () => {
         e.preventDefault();
         try {
             await api.post("/book/add", formData);
-            alert("Book added successfully!");
+
+            Swal.fire({
+                title: 'Success!',
+                text: 'Book added successfully!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+
+            // Reset form after success
+            setFormData({
+                bookName: "",
+                isbn: "",
+                author: "",
+                price: "",
+                quantity: ""
+            });
+
         } catch (err) {
             console.error(err);
-            alert("Error adding book.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to add book.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     };
 
@@ -33,27 +55,27 @@ const AddBooksForm = () => {
                 <div className="register-user-form">
 
                     <div className="input-wrapper">
-                        <input className="input-field" name="bookName" placeholder=" " onChange={handleChange} required />
+                        <input className="input-field" name="bookName" placeholder=" " value={formData.bookName} onChange={handleChange} required />
                         <label className="floating-label">Book Name</label>
                     </div>
 
                     <div className="input-wrapper">
-                        <input className="input-field" name="isbn" placeholder=" " onChange={handleChange} required />
+                        <input className="input-field" name="isbn" placeholder=" " value={formData.isbn} onChange={handleChange} required />
                         <label className="floating-label">ISBN</label>
                     </div>
 
                     <div className="input-wrapper">
-                        <input className="input-field" name="author" placeholder=" " onChange={handleChange} required />
+                        <input className="input-field" name="author" placeholder=" " value={formData.author} onChange={handleChange} required />
                         <label className="floating-label">Author</label>
                     </div>
 
                     <div className="input-wrapper">
-                        <input className="input-field" name="price" placeholder=" " onChange={handleChange} />
+                        <input className="input-field" name="price" type="number" placeholder=" " value={formData.price} onChange={handleChange} />
                         <label className="floating-label">Price</label>
                     </div>
 
                     <div className="input-wrapper">
-                        <input className="input-field" name="quantity" placeholder=" " onChange={handleChange} />
+                        <input className="input-field" name="quantity" type="number" placeholder=" " value={formData.quantity} onChange={handleChange} />
                         <label className="floating-label">Quantity</label>
                     </div>
 
