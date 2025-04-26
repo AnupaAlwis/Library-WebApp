@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../cssFiles/Admin/RegisterUserForm.css'
 
 export default function LendBook() {
     const [bookId, setBookId] = useState('');
@@ -29,41 +30,43 @@ export default function LendBook() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-green-100 p-6">
-            <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-6 text-center text-green-600">Lend Book</h2>
-                <form onSubmit={handleLend}>
-                    <label className="block mb-2 text-gray-700 font-medium">Book ID:</label>
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
+            <h2 className="register-user-heading">Lend Book</h2>
+            <form onSubmit={handleLend} className="register-user-form">
+                <div className="input-wrapper">
                     <input
                         type="text"
                         value={bookId}
                         onChange={(e) => setBookId(e.target.value)}
                         placeholder="Enter Book ID"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
+                        className="input-field"
                     />
+                    <label className="floating-label">Book ID</label>
+                </div>
 
-                    <label className="block mb-2 text-gray-700 font-medium">Quantity:</label>
+                <div className="input-wrapper">
                     <input
                         type="number"
                         min="1"
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                         placeholder="Enter Quantity"
-                        className="w-full px-4 py-2 border rounded-lg mb-4"
+                        className="input-field"
                     />
+                    <label className="floating-label">Quantity</label>
+                </div>
 
-                    <button
-                        type="submit"
-                        className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl transition duration-300"
-                    >
-                        Lend Book
-                    </button>
-                </form>
+                <button
+                    type="submit"
+                    className="user-register-form-button"
+                >
+                    Lend Book
+                </button>
+            </form>
 
-                {message && (
-                    <div className="mt-4 text-center text-sm text-gray-700">{message}</div>
-                )}
-            </div>
+            {message && (
+                <div style={{ marginTop: "20px", color: "white" }}>{message}</div>
+            )}
         </div>
     );
 }
