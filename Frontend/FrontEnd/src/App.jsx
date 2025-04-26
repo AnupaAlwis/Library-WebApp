@@ -18,6 +18,7 @@ import UpdateCustomer from "./Pages/Admin/UpdateUser";
 import UserPage from "./Pages/Reader/UserPage";
 import AllCustomers from "./Pages/Admin/CustomerGetAll";
 import './index.css';
+import UpdateCustomerByCustomer from "./Pages/Reader/UpdateUserDetails";
 
 const App = () => (
   <Router>
@@ -37,7 +38,7 @@ const App = () => (
       <Route path="/admin/searchByBookName" element = {<SearchByBookName/>}/>
       <Route path="/admin/getUserById" element = {<FindUser/>}/> 
       <Route path="/admin/updateUser" element={<UpdateCustomer/>}/>
-      <Route path="/user/updateUserByUser" element={<UpdateCustomer/>}/>
+      <Route path="/user/updateUserByUser" element={<UpdateCustomerByCustomer/>}/>
     </Routes>
   </Router>
 );

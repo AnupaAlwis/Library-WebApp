@@ -45,6 +45,7 @@ function LandingPage() {
             setMessage("Login successful! Redirecting...");
             setTimeout(() => {
                 setShowModal(false);
+                localStorage.setItem('customerId', username);
                 navigate(`/${role}`);
             }, 1000);
 

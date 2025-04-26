@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./DeleteUser.css";
+import "../cssFiles/Admin/DeleteUser.css";
 
 function DeleteCustomer() {
     const [userId, setUserId] = useState("");
