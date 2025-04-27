@@ -1,0 +1,122 @@
+/* Form container with full height to center everything */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Title centering */
+.form-heading {
+    color: #FFFFFF;
+    text-align: center;
+}
+
+/* Form layout */
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Input box wrapper */
+.input-box {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* General input field styling */
+.input-area {
+    width: 100%;
+    padding: 1rem 0.75rem 0.5rem;
+    background-color: black;
+    border: 2px solid #50b92d;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* Placeholder for inputs */
+.input-area::placeholder {
+    color: transparent;
+}
+
+/* Floating label for input */
+.label-text {
+    position: absolute;
+    top: 1rem;
+    left: 0.75rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+/* Floating label when input is focused or has text */
+.input-area:focus + .label-text,
+.input-area:not(:placeholder-shown) + .label-text {
+    top: 0.3rem;
+    font-size: 0.75rem;
+    color: white;
+}
+
+/* Border change on focus */
+.input-area:focus {
+    border-color: #007bff;
+}
+
+/* Submit button styling */
+.submit-button {
+    background-color: #007bff;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    margin-left: 20px;
+}
+
+/* Button hover effect */
+.submit-button:hover {
+    background-color: #0056b3;
+    border: 2px solid #007bff;
+}
+
+/* Button wrapper */
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Notification message */
+.message-box {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: gray;
+}
+
+/* Date picker input field styling */
+.input-area[type="date"] {
+    color-scheme: dark;
+    background-color: black;
+    color: white;
+    border: 2px solid #50b92d;
+    padding: 1rem 0.75rem 0.5rem;
+}
+
+/* Ensuring the date input icon is visible */
+.input-area[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* This inverts the color of the calendar icon */
+}
+
+/* Floating label for date input */
+.focused {
+    top: 0.3rem;
+    font-size: 0.75rem;
+    color: white;
+}

@@ -1,104 +1,131 @@
 import React, { useState } from 'react';
-import '../cssFiles/Admin/RegisterUserForm.css'; 
+import Swal from 'sweetalert2';  // Import SweetAlert2
+import '../cssFiles/Admin/GetReturns.css'; 
 
-export default function GetReturns() {
-    const [bookId, setBookId] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [userId, setUserId] = useState('');
-    const [borrowDate, setBorrowDate] = useState('');
-    const [message, setMessage] = useState('');
+export default function BookReturn() {
+    const [bookIdentifier, setBookIdentifier] = useState('');
+    const [bookQuantity, setBookQuantity] = useState('');
+    const [userIdentifier, setUserIdentifier] = useState('');
+    const [borrowedDate, setBorrowedDate] = useState('');
+    const [notification, setNotification] = useState('');
 
     const handleReturn = async (e) => {
         e.preventDefault();
 
-        if (!bookId || !quantity || !userId || !borrowDate) {
-            setMessage('Please enter all fields.');
+        if (!bookIdentifier || !bookQuantity || !userIdentifier || !borrowedDate) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Missing Fields',
+                text: 'Please fill out all fields.',
+            });
             return;
         }
 
         try {
-            const response = await fetch(`http://localhost:8080/book/return?id=${bookId}&quantity=${quantity}&userId=${userId}&borrowDate=${borrowDate}`, {
+            const response = await fetch(`http://localhost:8080/book/return?id=${bookIdentifier}&quantity=${bookQuantity}&userId=${userIdentifier}&borrowDate=${borrowedDate}`, {
                 method: 'PUT',
             });
 
+            const responseText = await response.text(); // Get the server response text
+            console.log(responseText);
+
             if (response.ok) {
-                setMessage(`Successfully returned ${quantity} copy/copies of Book ID ${bookId}.`);
+                if (responseText === 'Error Try Again') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Add details correctly',
+                    });
+                    setNotification('Add details correctly');
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: `Successfully returned ${bookQuantity} copy/copies of Book ID ${bookIdentifier}.`,
+                    });
+                    setNotification(`Successfully returned ${bookQuantity} copy/copies of Book ID ${bookIdentifier}.`);
+                }
             } else {
-                setMessage(`Return failed. Server responded with status: ${response.status}`);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Return Failed',
+                    text: `Return failed. Server responded with status: ${response.status}`,
+                });
+                setNotification(`Return failed. Server responded with status: ${response.status}`);
             }
         } catch (error) {
-            setMessage(`Error: ${error.message}`);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Check details again',
+            });
+            setNotification('Check details again');
         }
     };
 
     return (
-        <div className="centered-container">
-            <h3 className="register-user-heading">Return Book</h3>
-            <form onSubmit={handleReturn}>
-                <div className="register-user-form">
-
-                    <div className="input-wrapper">
-                        <input
-                            className="input-field"
-                            name="bookId"
-                            value={bookId}
-                            onChange={(e) => setBookId(e.target.value)}
-                            placeholder=" "
-                            required
-                        />
-                        <label className="floating-label">Book ID</label>
-                    </div>
-
-                    <div className="input-wrapper">
-                        <input
-                            className="input-field"
-                            type="number"
-                            name="quantity"
-                            min="1"
-                            value={quantity}
-                            onChange={(e) => setQuantity(e.target.value)}
-                            placeholder=" "
-                            required
-                        />
-                        <label className="floating-label">Quantity</label>
-                    </div>
-
-                    <div className="input-wrapper">
-                        <input
-                            className="input-field"
-                            name="userId"
-                            value={userId}
-                            onChange={(e) => setUserId(e.target.value)}
-                            placeholder=" "
-                            required
-                        />
-                        <label className="floating-label">User ID</label>
-                    </div>
-
-                    <div className="input-wrapper">
-                        <input
-                            className="input-field date-input" 
-                            type="date"
-                            name="borrowDate"
-                            value={borrowDate}
-                            onChange={(e) => setBorrowDate(e.target.value)}
-                            required
-                        />
-                        <label className={`floating-label ${borrowDate ? 'floating-label-focused' : ''}`}>
-                            Borrow Date
-                        </label>
-                    </div>
-
+        <div className="form-container">
+            <h3 className="form-heading">Book Return</h3>
+            <form className="form-layout" onSubmit={handleReturn}>
+                <div className="input-box">
+                    <input
+                        className="input-area"
+                        name="bookIdentifier"
+                        value={bookIdentifier}
+                        onChange={(e) => setBookIdentifier(e.target.value)}
+                        placeholder=" "
+                        required
+                    />
+                    <label className="label-text">Book ID</label>
                 </div>
 
-                <br />
-                <div className="button-container">
-                    <button className="user-register-form-button" type="submit">Return Book</button>
+                <div className="input-box">
+                    <input
+                        className="input-area"
+                        type="number"
+                        name="bookQuantity"
+                        min="1"
+                        value={bookQuantity}
+                        onChange={(e) => setBookQuantity(e.target.value)}
+                        placeholder=" "
+                        required
+                    />
+                    <label className="label-text">Quantity</label>
+                </div>
+
+                <div className="input-box">
+                    <input
+                        className="input-area"
+                        name="userIdentifier"
+                        value={userIdentifier}
+                        onChange={(e) => setUserIdentifier(e.target.value)}
+                        placeholder=" "
+                        required
+                    />
+                    <label className="label-text">User ID</label>
+                </div>
+
+                <div className="input-box">
+                    <input
+                        className="input-area date-input"
+                        type="date"
+                        name="borrowedDate"
+                        value={borrowedDate}
+                        onChange={(e) => setBorrowedDate(e.target.value)}
+                        required
+                    />
+                    <label className={`label-text ${borrowedDate ? 'focused' : ''}`}>
+                        Borrow Date
+                    </label>
+                </div>
+
+                <div className="button-wrapper">
+                    <button className="submit-button" type="submit">Return Book</button>
                 </div>
             </form>
 
-            {message && (
-                <div className="mt-4 text-center text-sm text-gray-700">{message}</div>
+            {notification && (
+                <div className="message-box">{notification}</div>
             )}
         </div>
     );
