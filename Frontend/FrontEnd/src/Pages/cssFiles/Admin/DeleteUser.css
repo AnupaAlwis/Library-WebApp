@@ -14,6 +14,11 @@
     margin-top: 20px;
 }
 
+.delete-users-page-label{
+    color: white;
+    font-weight: 700;
+}
+
 .delete-user-input {
     width: 100%;
     padding: 16px 12px;
