@@ -3,7 +3,7 @@ import api from "../api";
 import Swal from 'sweetalert2'; 
 import '../Pages/cssFiles/Admin/RegisterUserForm.css';
 
-const AddBooksForm = () => { // <-- Removed onSuccess
+const AddBooksForm = () => { 
     const [formData, setFormData] = useState({
         bookName: "",
         isbn: "",

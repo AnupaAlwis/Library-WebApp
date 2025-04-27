@@ -137,31 +137,6 @@ const AdminPage = () => {
       </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {/* <button onClick={() => setShowForm(true)} style={{ margin: '10px' }}>
-        Register User
-      </button>
-      <button onClick={() => setShowPopup(true)} style={{ margin: '10px' }}>
-        Show All Users
-      </button> */}
-
-
-      {/* {showForm && <RegisterForm onClose={() => setShowForm(false)} />}
-      {showPopup && <CustomerListPopup onClose={() => setShowPopup(false)} />} */}
-
     </div>
   );
 };
