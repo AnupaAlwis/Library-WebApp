@@ -7,6 +7,7 @@ import com.librarywebapp.Backend.DTO.Response.CustomerGeneralDTO;
 import com.librarywebapp.Backend.Model.Admin;
 import com.librarywebapp.Backend.Model.Customer;
 import com.librarywebapp.Backend.Service.AdminService;
+import com.librarywebapp.Backend.Service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,16 @@ public class AdminController {
     @DeleteMapping("delete")
     public ResponseEntity<String> deleteAdmin(@RequestParam Integer id) {
         return adminService.deleteAdmin(id);
+    }
+
+    @PutMapping("updateCustomer")
+    public ResponseEntity<CustomerGeneralDTO> updateCustomer(@RequestParam Integer id, @RequestBody CustomerAddDTO customerAddDTO) {
+        try {
+            CustomerGeneralDTO updatedCustomer = adminService.updateCustomer(id, customerAddDTO);
+            return ResponseEntity.ok(updatedCustomer);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

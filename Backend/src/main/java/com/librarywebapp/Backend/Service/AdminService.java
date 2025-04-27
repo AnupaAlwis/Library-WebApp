@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AdminService {
     private final AdminRepository adminRepository;
+    private final CustomerRepository customerRepository;
 
     public ResponseEntity<Admin> registerAdmin(AdminAddDTO adminAddDTO) {
         Admin admin = new Admin();
@@ -112,6 +113,32 @@ public class AdminService {
         else{
             return "Authentication failed";
         }
+
+    }
+
+    public CustomerGeneralDTO updateCustomer(Integer id, CustomerAddDTO customerAddDTO) {
+        Customer customer = customerRepository.findById(id).orElseThrow();
+        customer.setFirstName(customerAddDTO.getFirstName());
+        customer.setLastName(customerAddDTO.getLastName());
+        customer.setEmail(customerAddDTO.getEmail());
+        customer.setAddress(customerAddDTO.getAddress());
+        customer.setPhoneNumber(customerAddDTO.getPhoneNumber());
+        customer.setFine(customerAddDTO.getFine());
+        Customer updatedCustomer = customerRepository.save(customer);
+        return convertToCustomerDTO(updatedCustomer);
+
+    }
+
+    private CustomerGeneralDTO convertToCustomerDTO(Customer customer) {
+        CustomerGeneralDTO customerGeneralDTO = new CustomerGeneralDTO();
+        customerGeneralDTO.setCustomerId(customer.getCustomerId());
+        customerGeneralDTO.setFirstName(customer.getFirstName());
+        customerGeneralDTO.setLastName(customer.getLastName());
+        customerGeneralDTO.setEmail(customer.getEmail());
+        customerGeneralDTO.setAddress(customer.getAddress());
+        customerGeneralDTO.setFine(customer.getFine());
+        return customerGeneralDTO;
+
 
     }
 }

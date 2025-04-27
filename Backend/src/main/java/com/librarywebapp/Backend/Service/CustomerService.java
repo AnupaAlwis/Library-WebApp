@@ -67,7 +67,6 @@ public class CustomerService {
         customer.setAddress(customerAddDTO.getAddress());
         customer.setPassword(customerAddDTO.getPassword());
         customer.setPhoneNumber(customerAddDTO.getPhoneNumber());
-        customer.setFine(customerAddDTO.getFine());
         Customer updatedCustomer = customerRepository.save(customer);
         return convertToDTO(updatedCustomer);
 

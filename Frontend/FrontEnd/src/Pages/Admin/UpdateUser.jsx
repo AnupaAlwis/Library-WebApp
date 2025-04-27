@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Swal from 'sweetalert2';  // Import SweetAlert2
-import "../cssFiles/Admin/UpdateUser.css"
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import "../cssFiles/Admin/UpdateUser.css";
 
 const UpdateCustomer = () => {
     const [customerId, setCustomerId] = useState('');
@@ -13,7 +13,7 @@ const UpdateCustomer = () => {
         fine: ''
     });
     const [message, setMessage] = useState('');
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -28,32 +28,55 @@ const UpdateCustomer = () => {
             setMessage('Customer ID is required.');
             return;
         }
+
         try {
-            const res = await fetch(`http://localhost:8080/customer/update?id=${customerId}`, {
+            // Prepare data to send
+            const dataToSend = { 
+                ...formData,
+                fine: parseFloat(formData.fine)
+            };
+
+            const res = await fetch(`http://localhost:8080/admin/updateCustomer?id=${customerId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    ...formData,
-                    fine: parseFloat(formData.fine)
-                })
+                body: JSON.stringify(dataToSend)
             });
+
             if (res.ok) {
-                // Show success pop-up using SweetAlert2
                 Swal.fire({
                     title: 'Success!',
                     text: 'Customer updated successfully!',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
-
                 setMessage('Customer updated successfully!');
+            } else if (res.status === 404) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Customer not found!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                setMessage('Error: Customer not found.');
             } else {
                 const errorData = await res.json();
+                Swal.fire({
+                    title: 'Error!',
+                    text: errorData.message || 'Update failed.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
                 setMessage(`Error: ${errorData.message || 'Update failed.'}`);
             }
         } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Could not connect to the server.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
             setMessage('Error: Could not connect to the server.');
         }
     };

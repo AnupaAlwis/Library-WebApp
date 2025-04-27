@@ -46,11 +46,10 @@ export default function DeleteBook() {
             // Show error pop-up if the request fails
             Swal.fire({
                 title: 'Error!',
-                text: `Error: ${error.message}`,
+                text: `Error Book with that ID not found`,
                 icon: 'error',
                 confirmButtonText: 'OK',
             });
-            setMessage(`Error: ${error.message}`);
         }
     };
 

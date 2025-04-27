@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../cssFiles/Admin/UpdateUser.css"; // Importing the same CSS
+import Swal from "sweetalert2"; // ✅ Import SweetAlert2
+import "../cssFiles/Admin/UpdateUser.css"; // Using your CSS
 
 export default function UpdateBook() {
     const [bookId, setBookId] = useState("");
@@ -10,7 +11,6 @@ export default function UpdateBook() {
         price: "",
         quantity: ""
     });
-    const [message, setMessage] = useState("");
 
     const handleChange = (e) => {
         setBookDetails({
@@ -24,7 +24,12 @@ export default function UpdateBook() {
         e.preventDefault();
 
         if (!bookId) {
-            setMessage("Please enter the Book ID.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please enter the Book ID.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
             return;
         }
 
@@ -41,14 +46,45 @@ export default function UpdateBook() {
             );
 
             if (response.ok) {
-                setMessage("Book details updated successfully.");
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Book details updated successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    setBookId('');
+                    setBookDetails({
+                        bookName: "",
+                        isbn: "",
+                        author: "",
+                        price: "",
+                        quantity: ""
+                    });
+                });
+            } else if (response.status === 404) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Book not found. Please check the Book ID.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             } else {
-                setMessage(
-                    `Failed to update. Server responded with status: ${response.status}`
-                );
+                const errorText = await response.text();
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Failed to update. Server responded: ${errorText}`,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
         } catch (error) {
-            setMessage(`Error: ${error.message}`);
+            Swal.fire({
+                title: 'Error!',
+                text: `Network or server error: ${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            console.error(error);
         }
     };
 
@@ -144,10 +180,6 @@ export default function UpdateBook() {
                     </button>
                 </div>
             </form>
-
-            {message && (
-                <p className="mt-4 text-center text-red-600">{message}</p>
-            )}
         </div>
     );
 }
