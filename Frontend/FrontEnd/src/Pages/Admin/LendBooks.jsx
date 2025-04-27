@@ -35,10 +35,10 @@ export default function LendBook() {
             }
 
             if (response.ok) {
-                if (typeof responseData === 'string' && responseData.includes("Error")) {
+                if (typeof responseData === 'string' && (responseData.toLowerCase().includes("error") || responseData.toLowerCase().includes("not enough"))) {
                     Swal.fire({
                         title: 'Error!',
-                        text: 'Book with the ID not found',
+                        text: responseData, // Show backend error message exactly
                         icon: 'error',
                         confirmButtonText: 'OK',
                     });
