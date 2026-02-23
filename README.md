@@ -43,8 +43,6 @@ This project demonstrates the implementation of a practical software system usin
 - MySQL
 
 ---
-README.md
----
 ## ⚙️ Installation
 
 ### 1. Clone the repository
