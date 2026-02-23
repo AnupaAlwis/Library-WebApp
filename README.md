@@ -35,20 +35,18 @@ This project demonstrates the implementation of a practical software system usin
 ## 🛠️ Technologies Used
 
 ### Frontend
-- HTML
+- React
 - CSS
 - JavaScript
 
 ### Backend
-- Python / Flask *(Edit if needed)*
+- Springboot
 
 ### Database
-- SQLite *(Edit if needed)*
+- MySQL
 
 ---
 README.md
-```
-
 ---
 ## ⚙️ Installation
 
