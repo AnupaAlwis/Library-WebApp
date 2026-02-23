@@ -11,7 +11,6 @@ A web-based Library Management System designed to streamline book organization a
 - 🗂 Manage library data efficiently  
 - ⚡ Simple and intuitive user interface  
 - 🔄 Full CRUD operations  
-- 💾 Database integration
 
 ---
 
