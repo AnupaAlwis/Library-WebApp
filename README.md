@@ -46,21 +46,10 @@ This project demonstrates the implementation of a practical software system usin
 - SQLite *(Edit if needed)*
 
 ---
-
-## 📂 Project Structure
-
-```
-Library-WebApp/
-│
-├── static/
-├── templates/
-├── database/
-├── app.py
-└── README.md
+README.md
 ```
 
 ---
-
 ## ⚙️ Installation
 
 ### 1. Clone the repository
