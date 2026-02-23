@@ -1,8 +1,6 @@
 # 📚 Library Web Application
 
-A modern **Library Management System** designed to organize and manage books efficiently through a simple and user-friendly web interface.
-
-This project demonstrates practical full-stack web development by combining frontend design with backend functionality to create a real-world application.
+A web-based Library Management System designed to streamline book organization and record management through an efficient and intuitive interface. The system provides a structured solution for maintaining library data, enabling fast access, easy updates, and reliable data management.
 
 ---
 
