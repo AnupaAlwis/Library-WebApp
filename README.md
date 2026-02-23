@@ -76,35 +76,6 @@ python app.py
 
 ---
 
-## 🎯 Purpose
-
-This project was developed to:
-
-- Practice full-stack development
-- Learn database integration
-- Build a real-world application
-- Improve software engineering skills
-
----
-
-## 📈 Future Improvements
-
-- User authentication
-- Admin dashboard
-- Book borrowing system
-- Advanced search filters
-- Mobile-friendly interface
-
----
-
-## 👨‍💻 Author
-
-**Anupa Alwis**
-
-Electrical Engineering Undergraduate  
-Interested in Robotics, Machine Learning and Software Engineering
-
----
 
 ## ⭐ Contributions
 
